@@ -1,0 +1,1 @@
+{"root":["./src/config.ts","./src/db.ts","./src/index.ts","./src/controllers/auth.ts","./src/controllers/content.ts","./src/controllers/contentshare.ts","./src/middlewares/authmiddleware.ts","./src/routers/auth.ts","./src/routers/content.ts","./src/routers/contentshare.ts","./src/types/myrequest.ts"],"version":"5.8.3"}
