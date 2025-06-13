@@ -36,7 +36,7 @@ const register = async (req: Request, res: Response) => {
 
         const existingUser = await userModel.findOne({ username: userValidation.data.username });
         if (existingUser) {
-            res.status(403).json({ "message": "User Already Exists" });
+            res.status(400).json({ "message": "User Already Exists" });
             return;
         }
 
@@ -74,19 +74,19 @@ const login = async (req: Request, res: Response) => {
         const userValidation = userObject.safeParse(req.body);
 
         if (!userValidation.success) {
-            res.status(403).json({ "message": "Invalid Credentials" })
+            res.status(400).json({ "message": "Invalid Credentials" })
             return;
         }
 
         const user = await userModel.findOne({ username: userValidation.data.username });
 
         if (!user) {
-            res.status(403).json({ "message": "Invalid Credentials" });
+            res.status(400).json({ "message": "Invalid Credentials" });
             return;
         } else {
             const passwordValidation = await bcrypt.compare(userValidation.data.password, user.password!);
             if (!passwordValidation) {
-                res.status(403).json({ "message": "Invalid Credentials" });
+                res.status(400).json({ "message": "Invalid Credentials" });
                 return;
             }
 

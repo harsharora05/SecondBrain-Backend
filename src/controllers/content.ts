@@ -17,7 +17,7 @@ const contentAdd = async (req: myRequest, res: Response) => {
         const contentValidation = contentSchema.safeParse(req.body);
 
         if (!contentValidation.success) {
-            res.status(400).json({ "message": contentValidation.error.errors.map(er => er.message) });
+            res.status(401).json({ "message": contentValidation.error.errors.map(er => er.message) });
             return;
         }
 
@@ -52,7 +52,7 @@ const contentAdd = async (req: myRequest, res: Response) => {
     } catch (e: any) {
 
         if (e.code === 11000) {
-            res.status(403).json({ "message": "Content with same title exists" });
+            res.status(400).json({ "message": "Content with same title exists" });
         }
         else {
             res.status(500).json({ "message": "Server Error" });
@@ -77,6 +77,8 @@ const contentFetch = async (req: myRequest, res: Response) => {
             res.status(200).json({ "content": fullContent });
         }
     } catch (e) {
+        console.log(e);
+
         res.status(500).json({ "message": "Sever Error" });
     }
 
@@ -91,9 +93,9 @@ const contentDelete = async (req: myRequest, res: Response) => {
         const contentDelete = await contentModel.findOneAndDelete({ _id: contentId, contentBy: userId });
 
         if (contentDelete) {
-            res.status(200).json({ "messaga": "Deleted Sucessfully" });
+            res.status(200).json({ "message": "Deleted Sucessfully" });
         } else {
-            res.status(400).json({ "messaga": "Content Not Found" });
+            res.status(400).json({ "message": "Content Not Found" });
         }
 
 

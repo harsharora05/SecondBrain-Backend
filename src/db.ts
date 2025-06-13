@@ -21,7 +21,7 @@ const contentSchema = new Schema({
     tags: [{ type: mongoose.Types.ObjectId, ref: "tags" }],
     contentBy: { type: mongoose.Types.ObjectId, ref: "users" },
     canShared: { type: Boolean, default: false },
-    shareLink: { type: String }
+    shareLink: { type: String },
 }, { timestamps: true });
 
 
