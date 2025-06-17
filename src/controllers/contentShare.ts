@@ -41,7 +41,6 @@ const getContent = async (req: Request, res: Response) => {
 
         if (content) {
             if (content.shareLink === `${SHARED_URL}/${shareId}`) {
-                console.log(`${SHARED_URL}/${shareId}`);
 
                 res.status(200).json({ "content": content });
             } else {

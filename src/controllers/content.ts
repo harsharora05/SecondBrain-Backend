@@ -78,8 +78,7 @@ const contentFetch = async (req: myRequest, res: Response) => {
         }
     } catch (e) {
         console.log(e);
-
-        res.status(500).json({ "message": "Sever Error" });
+        res.status(500).json({ "message": "Sever Error", "error": e });
     }
 
 };
